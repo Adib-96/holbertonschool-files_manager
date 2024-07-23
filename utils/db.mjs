@@ -11,7 +11,7 @@ class DBClient {
     MongoClient.connect(URL, { useUnifiedTopology: true }, (err, client) => {
       if (!err) {
         this.db = client.db(DATABASE);
-        this.users = this.db.collection('uscers');
+        this.users = this.db.collection('users');
         this.files = this.db.collection('files');
       } else {
         console.log(err.message);
@@ -21,7 +21,7 @@ class DBClient {
   }
 
   isAlive() {
-    return this.db;
+    return !!this.db;
   }
 
   async nbUsers() {
